@@ -1,0 +1,237 @@
+.main{
+ 
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    width: 50%;
+    font-family: Arial, sans-serif;
+
+
+     
+     
+    }
+    .id-img{
+      align-items: center;
+    }
+     
+    .left{
+     
+    width: 100px;
+    height: 550x;
+    border: 2px solid tomato;
+    margin-right: 10px;
+     
+    }
+     
+    .middle{
+     
+    align-items: center;
+     
+    }
+     
+    .first{
+     
+    display: flex;
+    flex-direction: column;
+     
+    }
+     
+    .box1{
+     
+    width: 525px;
+    height: 100px;
+    border: 2px solid red;
+    margin-bottom: 10px;
+     
+    }
+    .box2{
+     
+    width: 525px;
+    height: 400px;
+    border: 2px solid red;
+    margin-bottom: 10px;
+     
+    }
+     
+    .second{
+     
+    display: flex;
+    flex-direction: row;
+     
+    }
+     
+    .box2{
+     
+    width: 172px;
+    height: 100px;
+    margin: 1px;
+    border: 2px solid greenyellow;
+    margin-bottom: 10px;
+     
+    }
+     
+    .third{
+     
+    display: flex;
+    flex-direction: row;
+     
+    }
+     
+    /* .box3_1{
+     
+    width: auto;
+    height: auto;
+    margin: 1px;
+    border: 2px solid red;
+    margin-bottom: 10px;
+    padding-left: 20px;
+     
+    } */
+    .box3_1 {
+      background-color: #ffffff;
+      padding: 20px 40px;
+      width: auto;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border: 2px solid red;
+      
+  }
+  .box3_1 h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+  }
+  label {
+      display: block;
+      margin-top: 10px;
+      color: #555;
+      font-weight: bold;
+  }
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  input[type="date"],
+  select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+      
+  }
+  input[type="submit"] {
+      width: full;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
+  }
+ 
+ .box3_2{
+     
+    width: 146px;
+    height: 100px;
+    margin: 1px;
+    border: 2px solid green;
+    margin-bottom: 10px;
+     
+    }
+     
+    .right{
+     
+    width: 100px;
+    height: 550px;
+    border: 2px solid blue;
+    margin-left: 10px;
+     
+    }
+ .box2 img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.available-tokens-container {
+    border: 2px solid #4CAF50;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 300px;
+    font-family: Arial, sans-serif;
+}
+
+.available-tokens-container h2 {
+    color: #4CAF50;
+    text-align: center;
+}
+
+.available-tokens-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+.available-tokens-container li {
+    background: #f9f9f9;
+    margin: 5px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.no-tokens-message {
+    color: red;
+    font-family: Arial, sans-serif;
+}
+
+.used-tokens-container {
+    border: 2px solid tomato;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 200px;
+    font-family: Arial, sans-serif;
+}
+
+.used-tokens-container h3 {
+    color: tomato;
+    text-align: center;
+}
+
+.used-tokens-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+.used-tokens-container li {
+    background: #f9f9f9;
+    margin: 5px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.no-used-tokens-message {
+    color: red;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.box6 {
+    border: 2px solid #000; /* Added border to .box6 */
+}
+
+.first-box {
+    border: 2px solid #000;
+    width: 525px;
+    height: auto; /* Adjust height to auto */
+    border: 2px solid red;
+    margin-bottom: 10px;
+    padding: 10px; /* Add padding for better content display */
+    overflow: auto; /* Ensure content is scrollable if it overflows */
+}

@@ -10,6 +10,13 @@
         .hidden {
             display: none;
         }
+        #databaseInfo {
+            height: 100px;
+            overflow-y: scroll;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        
     </style>
     <script>
         function showInfo(title, author, category) {
@@ -129,7 +136,7 @@
                         </tr>
                         <tr>
                             <td colspan="2">
-                                <input type="submit" value="Add Book">
+                                <input id="tini" type="submit" value="Add Book">
                             </td>
                         </tr>
                     </table>
@@ -210,6 +217,10 @@
                 ?>
             </div>
         </div>
+
+
+
+        
     </div>
 
     <div class="right">

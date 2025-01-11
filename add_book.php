@@ -21,12 +21,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $sql = "INSERT INTO bookss (book_title, author_name, isbn, quantity, category) VALUES (?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssds", $bookTitle, $authorName, $isbn, $quantity, $category);
+    $stmt->bind_param("sssis", $bookTitle, $authorName, $isbn, $quantity, $category);
 
-    if ($stmt->execute()) {
+    try {
+        $stmt->execute();
         echo "New book added successfully";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+    } catch (mysqli_sql_exception $e) {
+        if ($e->getCode() == 1062) {
+            echo "Error: Duplicate entry for ISBN.";
+        } else {
+            echo "Error: " . $e->getMessage();
+        }
     }
 
     $stmt->close();

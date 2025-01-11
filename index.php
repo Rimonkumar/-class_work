@@ -6,10 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Borrowing Management</title>
     <link rel="stylesheet" href="style/style.css">
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+    <script>
+        function showInfo(title, author, category) {
+            document.getElementById('infoTitle').innerText = title;
+            document.getElementById('infoAuthor').innerText = author;
+            document.getElementById('infoCategory').innerText = category;
+            document.getElementById('formTitle').value = title;
+            document.getElementById('formAuthor').value = author;
+            document.getElementById('formCategory').value = category;
+            document.getElementById('box2').classList.remove('hidden');
+        }
+    </script>
 </head>
 
+<body>
 <h1 style="text-align: center;">Book Borrowing Management <br> <img class="id-img " src="id.png" alt="ID"></h1>
-
 
 <div class="main">
 
@@ -33,10 +49,7 @@
     </div>
 
     <div class="middle">
-
-
         <div class="first-box">
-
             <div class="">
                 <h2>Database Information</h2>
                 <?php
@@ -52,7 +65,7 @@
                     die("Connection failed: " . $conn->connect_error);
                 }
 
-                $sql = "SELECT book_title, author_name, category FROM books";
+                $sql = "SELECT book_title, author_name, category FROM bookss";
                 $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
@@ -60,7 +73,11 @@
                     echo "<table border='1' style='width:100%; text-align:left;'>";
                     echo "<tr><th>Title</th><th>Author</th><th>Category</th></tr>";
                     while ($row = $result->fetch_assoc()) {
-                        echo "<tr><td>" . htmlspecialchars($row["book_title"]) . "</td><td>" . htmlspecialchars($row["author_name"]) . "</td><td>" . htmlspecialchars($row["category"]) . "</td></tr>";
+                        echo "<tr>";
+                        echo "<td><button onclick=\"showInfo('" . htmlspecialchars($row["book_title"]) . "', '" . htmlspecialchars($row["author_name"]) . "', '" . htmlspecialchars($row["category"]) . "')\">" . htmlspecialchars($row["book_title"]) . "</button></td>";
+                        echo "<td>" . htmlspecialchars($row["author_name"]) . "</td>";
+                        echo "<td>" . htmlspecialchars($row["category"]) . "</td>";
+                        echo "</tr>";
                     }
                     echo "</table>";
                     echo "</div>";
@@ -71,43 +88,47 @@
                 $conn->close();
                 ?>
             </div>
-
         </div>
 
-        
-
-        <div class="box1">
-            box2
+        <div class="second-box">
+            <div id="box2" class="hidden">
+                <h2>Manage Information</h2>
+                <table border="1" style="width:100%; text-align:left;">
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Category</th>
+                    </tr>
+                    <tr>
+                        <td><span id="infoTitle"></span></td>
+                        <td><span id="infoAuthor"></span></td>
+                        <td><span id="infoCategory"></span></td>
+                    </tr>
+                </table>
+                <form action="update_delete.php" method="post">
+                    <input type="hidden" name="title" id="formTitle">
+                    <input type="hidden" name="author" id="formAuthor">
+                    <input type="hidden" name="category" id="formCategory">
+                    <button type="submit" name="update">Update</button>
+                    <button type="submit" name="delete">Delete</button>
+                </form>
+            </div>
         </div>
 
-
-
-
-
-
-
-
-        <div class="second">
-
-            <div class="box2 ">
+        <div class="third-b0x">
+            <div class="box2">
                 <img src="111.png">
             </div>
-
             <div class="box2">
                 <img src="112.jpg">
             </div>
-
             <div class="box2">
                 <img src="121.jpg">
             </div>
-
-
         </div>
 
-
-
         <div class="box6">
-            <div class=" add-book-container">
+            <div class="add-book-container">
                 <form action="add_book.php" method="post">
                     <table>
                         <tr>
@@ -140,12 +161,7 @@
             </div>
         </div>
 
-
-
-
-
         <div class="third">
-
             <div class="box3_1 ">
                 <form action="process.php" method="post">
                     <label for="name">Full Name</label>
@@ -181,14 +197,11 @@
                     <input type="date" id="Return_date" name="Return_date" required>
 
                     <label for="fees">Fees</label>
-                    <input type="number" id="fees" name="fees" min="0" step="">
+                    <input type="number" id="fees" name="fees" min="0" step="0.01">
 
                     <input type="submit" name="submit" value="Submit">
                 </form>
-
             </div>
-
-
 
             <div class="box3_">
                 <?php
@@ -219,14 +232,8 @@
                     echo "<p style='color: red; font-family: Arial, sans-serif;'>No tokens found in the JSON file.</p>";
                 }
                 ?>
-
             </div>
-
-
         </div>
-
-
-
     </div>
 
     <div class="right">
@@ -234,7 +241,5 @@
     </div>
 </div>
 
-
 </body>
-
 </html>

@@ -17,7 +17,7 @@
     .left{
      
     width: 100px;
-    height: 550x;
+    height: 550px;
     border: 2px solid tomato;
     margin-right: 10px;
      
@@ -155,6 +155,12 @@
   display: block;
 }
 
+.image-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .available-tokens-container {
     border: 2px solid #4CAF50;
     border-radius: 10px;
@@ -234,4 +240,13 @@
     margin-bottom: 10px;
     padding: 10px; /* Add padding for better content display */
     overflow: auto; /* Ensure content is scrollable if it overflows */
+}
+
+.first-box, .second-box, .third-box {
+    width: 525px;
+    height: auto;
+    border: 2px solid red;
+    margin-bottom: 10px;
+    padding: 10px;
+    overflow: auto;
 }

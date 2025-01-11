@@ -13,14 +13,26 @@
     </style>
     <script>
         function showInfo(title, author, category) {
-            document.getElementById('infoTitle').innerText = title;
-            document.getElementById('infoAuthor').innerText = author;
-            document.getElementById('infoCategory').innerText = category;
             document.getElementById('formTitle').value = title;
             document.getElementById('formAuthor').value = author;
             document.getElementById('formCategory').value = category;
+            document.getElementById('newTitle').value = title;
+            document.getElementById('newAuthor').value = author;
+            document.getElementById('newCategory').value = category;
             document.getElementById('box2').classList.remove('hidden');
         }
+
+        function refreshDatabaseInfo() {
+            fetch('fetch_books.php')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('databaseInfo').innerHTML = data;
+                });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            refreshDatabaseInfo();
+        });
     </script>
 </head>
 
@@ -52,78 +64,42 @@
         <div class="first-box">
             <div class="">
                 <h2>Database Information</h2>
-                <?php
-                // Database connection
-                $servername = "localhost";
-                $username = "root";
-                $password = "";
-                $dbname = "class_work";
-
-                $conn = new mysqli($servername, $username, $password, $dbname);
-
-                if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
-                }
-
-                $sql = "SELECT book_title, author_name, category FROM bookss";
-                $result = $conn->query($sql);
-
-                if ($result->num_rows > 0) {
-                    echo "<div style='max-height: 300px; overflow-y: auto;'>";
-                    echo "<table border='1' style='width:100%; text-align:left;'>";
-                    echo "<tr><th>Title</th><th>Author</th><th>Category</th></tr>";
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td><button onclick=\"showInfo('" . htmlspecialchars($row["book_title"]) . "', '" . htmlspecialchars($row["author_name"]) . "', '" . htmlspecialchars($row["category"]) . "')\">" . htmlspecialchars($row["book_title"]) . "</button></td>";
-                        echo "<td>" . htmlspecialchars($row["author_name"]) . "</td>";
-                        echo "<td>" . htmlspecialchars($row["category"]) . "</td>";
-                        echo "</tr>";
-                    }
-                    echo "</table>";
-                    echo "</div>";
-                } else {
-                    echo "No books found.";
-                }
-
-                $conn->close();
-                ?>
+                <div id="databaseInfo">
+                    <!-- Database information will be loaded here -->
+                </div>
             </div>
         </div>
 
         <div class="second-box">
+        <h2>Manage Information</h2>
             <div id="box2" class="hidden">
-                <h2>Manage Information</h2>
-                <table border="1" style="width:100%; text-align:left;">
-                    <tr>
-                        <th>Title</th>
-                        <th>Author</th>
-                        <th>Category</th>
-                    </tr>
-                    <tr>
-                        <td><span id="infoTitle"></span></td>
-                        <td><span id="infoAuthor"></span></td>
-                        <td><span id="infoCategory"></span></td>
-                    </tr>
-                </table>
-                <form action="update_delete.php" method="post">
+                <form action="update_delete.php" method="post" onsubmit="refreshDatabaseInfo()">
                     <input type="hidden" name="title" id="formTitle">
                     <input type="hidden" name="author" id="formAuthor">
                     <input type="hidden" name="category" id="formCategory">
+                    <label for="new_title">New Title</label>
+                    <input type="text" name="new_title" id="newTitle" required>
+                    <label for="new_author">New Author</label>
+                    <input type="text" name="new_author" id="newAuthor" required>
+                    <label for="new_category">New Category</label>
+                    <input type="text" name="new_category" id="newCategory" required>
                     <button type="submit" name="update">Update</button>
                     <button type="submit" name="delete">Delete</button>
                 </form>
             </div>
         </div>
 
-        <div class="third-b0x">
-            <div class="box2">
-                <img src="111.png">
-            </div>
-            <div class="box2">
-                <img src="112.jpg">
-            </div>
-            <div class="box2">
-                <img src="121.jpg">
+        <div class="third-box">
+            <div class="image-container">
+                <div class="box2">
+                    <img src="111.png">
+                </div>
+                <div class="box2">
+                    <img src="112.jpg">
+                </div>
+                <div class="box2">
+                    <img src="121.jpg">
+                </div>
             </div>
         </div>
 

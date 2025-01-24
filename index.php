@@ -37,8 +37,24 @@
                 });
         }
 
+        function fetchBookTitles() {
+            fetch('fetch_book_titles.php')
+                .then(response => response.json())
+                .then(data => {
+                    const booksSelect = document.getElementById('books');
+                    booksSelect.innerHTML = ''; // Clear existing options
+                    data.forEach(title => {
+                        const option = document.createElement('option');
+                        option.value = title;
+                        option.textContent = title;
+                        booksSelect.appendChild(option);
+                    });
+                });
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             refreshDatabaseInfo();
+            fetchBookTitles();
         });
     </script>
 </head>
@@ -158,16 +174,7 @@
 
                     <label for="books">Book Title</label>
                     <select id="books" name="books" required>
-                        <option value="B1">BOOK1</option>
-                        <option value="B2">BOOK2</option>
-                        <option value="B3">BOOK3</option>
-                        <option value="B4">BOOK4</option>
-                        <option value="B5">BOOK5</option>
-                        <option value="B6">BOOK6</option>
-                        <option value="B7">BOOK7</option>
-                        <option value="B8">BOOK8</option>
-                        <option value="B9">BOOK9</option>
-                        <option value="B10">BOOK10</option>
+                        <!-- Options will be populated dynamically -->
                     </select>
 
                     <label for="date">Borrow Date</label>

@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $errors[] = "Both borrowing and return dates must be provided.";
     }
 
-    // Check if the book is already borrowed
+    // Check if the book already borrowed
     if (empty($errors) && isset($_COOKIE[$bookTitle])) {
         $currentBorrower = $_COOKIE[$bookTitle];
         $errors[] = "This book is already borrowed by $currentBorrower. Wait 10 days before borrowing it again.";
@@ -64,7 +64,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Set the cookie and display the receipt if no errors
     if (empty($errors) && !isset($_COOKIE[$bookTitle])) {
-        setcookie($bookTitle, $name, time() + 30); // 10 days
+        $cookieName = str_replace(['=', ',', ';', ' ', "\t", "\r", "\n", "\013", "\014"], '_', $bookTitle);
+        setcookie($cookieName, $name, time() + 864000); // 10 days
         $receiptDisplayed = true;
 
         // Add token to used.json if valid
